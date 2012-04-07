@@ -1,5 +1,5 @@
 <?php
-//require_once('SQLSpecification.php');
+require_once('SQLSpecification.php');
 
 class TableGateway{
 	private $table;
@@ -30,7 +30,7 @@ class TableGateway{
 	public function findAll(){
 		return $this->sql()->select($this->table, func_get_args())->query();
 	}
-	public function findAllById(){
+	public function findAllOrderById(){
 		return $this->sql()->select($this->table, func_get_args())->order('id')->query();
 	}
 	public function find($condition){

@@ -1,32 +1,35 @@
 <?php
-// Не переделан
+
 class FrontController{
-	private $tf;
-	private $pathController;
+	protected $tf;
+	protected $pathTo;
+	protected $default;
 	
-	public function __construct($tf, $pathController){
+	public function __construct($tf, $pathTo, $default){
 		$this->tf = $tf;
-		$this->pathController = $pathController;
+		$this->pathTo = $pathTo;
+		$this->default = $default;
 	}
 	
-	public function dispatch($request){ ////////////////////////////////////
-		if(!empty($request->_controller)){
-			$contName = ucfirst($request->_controller);
+	public function dispatch($request){
+		if(!empty($request->controller)){
+			$tableName = $request->controller;
 		}
 		else{
-			
+			$tableName = $this->default['controller'];
 		}
-		$contName .= 'Controller';
+		$contName = ucfirst($tableName);
+		$contName .= 'Controller'; 					// const
 		
-		require_once(CONTROLLERS.$contName.'.php');
+		require_once($this->pathTo['controllers'].$contName.'.php');
+		$controller = new $contName($this->tf, $tableName, $request, $this->pathTo['views']);
 		
-		$controller = new $contName($this->tf, $this->_action,$this->_params);
-		$controller->build();
+		if(!empty($request->action)){
+			$action = $request->action;
+		}
+		else{
+			$action = $this->default['action'];
+		}
+		$controller->$action($request->params);
 	}
-	
-	
-	else{
-			$this->_controller = 'post';
-			$this->_action = 'get';
-		}
 }

@@ -2,35 +2,17 @@
 
 abstract class Controller{
 
-	protected $tf;
+	protected $model;
+	protected $tableName;
+	protected $request;
 	protected $pathView;
 	protected $content = array();
-	protected $request;
-	const DEFAULT_ACTION = 'findAllOrderById'; // index
+	
 
-	public function __construct($tf, $request, $pathView){
-		$this->tf = $tf;
+	public function __construct($tf, $tableName, $request, $pathView){
+		$this->model = $tf->$tableName;
+		$this->tableName = $tableName;
 		$this->request = $request;
 		$this->pathView = $pathView;
 	}
-	public function add(){
-		
-	}
-	public function get(){
-		if()
-	}
-	public function set(){
-		
-	}
-	public function del(){
-		
-	}
-	/*protected function getModel(){
-		return $this->model;
-	}
-
-	protected function redirect($url){
-		header('location:' . $url);
-	}*/
-
 }
