@@ -3,13 +3,24 @@ require_once('Controller.php');
 
 class CRUDController extends Controller{
 	
-	public function create(){
-		
+	public function create($request){
+		$assocArray = array();
+		foreach($this->fields as $field){
+			if($this->request->$field){
+				$value = $this->request->$field;
+				$assocArray[$field] = $value;
+			}
+			else{
+				throw new LibException('Не задано поле: '.$field);
+			}
+		}
+		$this->model->insert($assocArray);
+		header('Location: '.ROOT_URL);
 	}
 	public function read($params){			// dublication
+		$title = ucfirst($this->tableName);
 		if(empty($params)){
 			$result = $this->model->findAllOrderById();
-			$title = 
 		}
 		else{
 			if(count($params) == 1 && !empty($params['id'])){
@@ -57,6 +68,7 @@ class CRUDController extends Controller{
 				}
 				$result = $this->model->delete($condition, $params);
 			}
+			header('Location: '.ROOT_URL);
 		}
 	}
 }

@@ -4,8 +4,10 @@ class Request {
 	public $controller;
 	public $action;
 	public $params;
+	public $request;
 	
 	public function __construct($request){
+		$this->request = $request;
 		$splits = (array_key_exists('r', $request)) ? explode('/', trim($request['r'],'/')) : FALSE;
 		if($splits){
 			// Controller

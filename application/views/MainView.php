@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="site_sections">
-			<a href="<?php echo ROOT_URL ///////////////////////////////////////?>">Home</a>
+			<a href="<?php echo ROOT_URL?>">Home</a>
 			<a href="#">Тут будет еще раздел</a>
 	</div>
 
