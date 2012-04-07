@@ -1,27 +1,24 @@
 <?php
 
-class PostsController extends Controller{
+class PostsController extends CRUDController{
+	protected $fields = array('Theme', 'Text', 'UserId');
 	
-	public function build($request){
-		if(!empty($request->action)){
-			$method = $request->action;
-		}
-		else{
-			$method = self::DEFAULT_ACTION;
-		}
-		$model = $this->tf->posts;
+	public function create($request){
 		
-		if($request->params['id']){
-			$param = $request->params['id'];
+		$assocArray = array();
+		foreach($this->fields as $field){
+			if(empty($request->$field)){
+				throw new LibException('Не задано поле: '.$field);
+			}
+			else{
+				$value = $request->$field;
+				$assocArray[$field] = $value;
+			}
 		}
-		else{
-			$param = null;
-		}
+		$model->insert($assocArray);
+	}
+	
+	public function update(){
 		
-		$content = $model->$method($param);
-		{	echo '<pre>';
-			var_dump($content); echo '<br><br>';
-			echo '</pre>';
-		/**/}
 	}
 }
