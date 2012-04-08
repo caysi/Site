@@ -45,6 +45,17 @@ class TableGateway{
 		return $this->find(self::ID_CONDITION, $id);
 	}
 	
+	public function update($assocArray, $condition){
+		$array = array_slice(func_get_args(), 2);
+		if(is_array($array[0])){
+			$array = $array[0];
+		}
+		return $this->sql()->update($this->table, $assocArray)->where($condition, $array)->execute();
+	}
+	public function updateById($assocArray, $id){
+		return $this->update($assocArray, self::ID_CONDITION, $id);
+	}
+	
 	public function maxId(){
 		return $this->sql()->select($this->table, 'MAX(id)')->query();
 	}

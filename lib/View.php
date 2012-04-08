@@ -8,7 +8,11 @@ class View{
 		$this->tableName = $tableName;
 		$this->pathView = $pathView;
 	}
-	function render ($result, $title){
+	function render ($result, $title, $variables){
+		foreach($variables as $key=>$val){
+			$$key = $val;
+		}
+		
 		ob_start();
 		$contentFile = ucfirst($this->tableName);
 		$contentFile .= 'View.php';
