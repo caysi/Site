@@ -4,7 +4,7 @@ header("Content-type:text/html;charset=utf-8");
 error_reporting(E_ALL);
 ini_set('display_errors','On');			// Вывод ошибок на экран
 define("ROOT_PATH", dirname(__FILE__).'/');		// Корневая директроия
-define("ROOT_URL", 'http://'.$_SERVER["SERVER_NAME"].'/DimaLex');		////////////////////////////////////////
+define("ROOT_URL", 'http://'.$_SERVER["SERVER_NAME"].'/');
 
 $default = array('controller'=>'posts',
 				'action'=>'read');

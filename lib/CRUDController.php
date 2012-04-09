@@ -7,7 +7,7 @@ class CRUDController extends Controller{
 		$assocArray = $this->checkField();
 		$this->model->insert($assocArray);
 		$this->location();
-	}
+	}	// create
 	public function read($params){
 		$title = ucfirst($this->tableName);
 		
@@ -20,8 +20,8 @@ class CRUDController extends Controller{
 		}
 		
 		$view = new View($this->tableName, $this->pathView);
-		$view->render($result, $title, $variables);
-	}
+		$view->render($result, $title);		// VARIABLES
+	}	// read
 	public function update($params){
 		if(empty($params)){
 			throw new LibException('Не заданы параметры изменения');
@@ -42,16 +42,21 @@ class CRUDController extends Controller{
 				$this->location();
 			}
 			else{
-				
+				$args = $this->condition($params);
+				$result = $this->model->find($args['condition'], $args['params']);
+				$result[0]['postAction'] = $this->request->r;
+				$title = 'UpdateForm';
+				$view = new View($this->tableName, $this->pathView);
+				$view->update($result, $title);
 			}
 		}
 		
-	}
+	}	// update
 	public function delete($params){
 		$args = $this->condition($params);
 		$result = $this->model->delete($args['condition'], $args['params']);
 		$this->location();
-	}
+	}	// delete
 	
 	
 	protected function condition($params){
@@ -67,7 +72,6 @@ class CRUDController extends Controller{
 		}
 		return $args;
 	}
-	
 	protected function location(){
 		header('Location: '.ROOT_URL);
 	}

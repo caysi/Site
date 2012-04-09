@@ -11,7 +11,7 @@
 <body>
 	<div id="site_sections">
 			<a href="<?php echo ROOT_URL?>">Home</a>
-			<a href="#">Тут будет еще раздел</a>
+			<a href="#">Тут еще будут разделы</a>
 	</div>
 
 	<div class="content">
