@@ -1,5 +1,4 @@
 <?php
-//require_once('MySQL.php');
 
 class SQLSpecification{
 	private $db;
@@ -28,7 +27,7 @@ class SQLSpecification{
 	//('post',array('Theme'=>'Hello','Text'=>,'World\nGGGGGg','UserId'=>1))
 	public function insert($table, $array){
 		foreach($array as $key=>$val){
-			$array[0][] = $this->wrap($key, FALSE);
+			$array[0][] = $this->wrap($key, FALSE);  //////////////////////
 			$array[1][] = $this->wrap($val);
 		}
 		$array[0] = implode(',',$array[0]);

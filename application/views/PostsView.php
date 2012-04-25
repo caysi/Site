@@ -1,5 +1,5 @@
 <div id="posts">
-<?php foreach($result as $val){	?>
+<?php foreach($this->result as $val){	?>
 	<div id="<?=$val['id']?>">
 		<h3><?=$val['Theme']?></h3>
 		<p><?=nl2br($val['Text'])?></p>

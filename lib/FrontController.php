@@ -19,7 +19,7 @@ class FrontController{
 			$tableName = $this->default['controller'];
 		}
 		$contName = ucfirst($tableName);
-		$contName .= 'Controller'; 					// const
+		$contName .= 'Controller';
 		
 		require_once($this->pathTo['controllers'].$contName.'.php');
 		$controller = new $contName($this->tf, $tableName, $request, $this->pathTo['views']);
@@ -31,5 +31,8 @@ class FrontController{
 			$action = $this->default['action'];
 		}
 		$controller->$action($request->params);
+	}
+	public function json($result){
+		return json_encode($result);
 	}
 }

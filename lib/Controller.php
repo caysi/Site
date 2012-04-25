@@ -3,16 +3,18 @@
 abstract class Controller{
 
 	protected $model;
-	protected $tableName;
+	//protected $tableName;
 	protected $request;
-	protected $pathView;
-	protected $content = array();
+	//protected $pathView;
+	protected $content = array();		// 
+	protected $variables = array();
+	protected $json;
 	
 
 	public function __construct($tf, $tableName, $request, $pathView){
 		$this->model = $tf->$tableName;
-		$this->tableName = $tableName;
+		$this->variables['tableName'] = $tableName;
+		$this->variables['pathView'] = $pathView;
 		$this->request = $request;
-		$this->pathView = $pathView;
 	}
 }

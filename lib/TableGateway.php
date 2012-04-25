@@ -28,10 +28,12 @@ class TableGateway{
 	}
 	
 	public function findAll(){
-		return $this->sql()->select($this->table, func_get_args())->query();
+		$fields = func_get_args();
+		return $this->sql()->select($this->table, $fields)->query();
 	}
 	public function findAllOrderById(){
-		return $this->sql()->select($this->table, func_get_args())->order('id')->query();
+		$fields = func_get_args();
+		return $this->sql()->select($this->table, $fields)->order('id')->query();
 	}
 	public function find($condition){
 		$array = func_get_args();

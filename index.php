@@ -4,7 +4,7 @@ header("Content-type:text/html;charset=utf-8");
 error_reporting(E_ALL);
 ini_set('display_errors','On');			// Вывод ошибок на экран
 define("ROOT_PATH", dirname(__FILE__).'/');		// Корневая директроия
-define("ROOT_URL", 'http://'.$_SERVER["SERVER_NAME"].'/');
+define("ROOT_URL", 'http://'.$_SERVER["SERVER_NAME"].'/DimaLex/');
 
 $default = array('controller'=>'posts',
 				'action'=>'read');
@@ -20,9 +20,9 @@ require_once(ROOT_PATH.'lib/Controller.php');
 require_once(ROOT_PATH.'lib/CRUDController.php');
 require_once(ROOT_PATH.'lib/TableGateway.php');
 require_once(ROOT_PATH.'lib/View.php');
+require_once(ROOT_PATH.'config.php');
 
 try{
-	require_once 'config.php';
 	
 	$db = new MySql(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
@@ -38,3 +38,4 @@ catch (LibException $e) {
     echo $e->getMessage();
     exit;
 }
+?>

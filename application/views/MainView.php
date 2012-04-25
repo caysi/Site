@@ -5,17 +5,17 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><?php echo $title; ?></title>
+	<title><?=$this->title?></title>
 	<link rel="stylesheet" type="text/css" href="styles/style.css" />
 </head>
 <body>
 	<div id="site_sections">
-			<a href="<?php echo ROOT_URL?>">Home</a>
-			<a href="#">Тут еще будут разделы</a>
+		<a href="<?=ROOT_URL?>">Home</a>
+		<a href="<?=ROOT_URL.'?r=chat'?>">Chat</a>
 	</div>
 
 	<div class="content">
-		<?php echo $content;?>
+		<?=$content;?>
 	</div>
 	
 </body>
